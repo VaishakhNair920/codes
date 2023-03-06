@@ -1,0 +1,35 @@
+data= read.csv("titanic_train.csv")
+data[complete.cases(data$Age), ]
+head(data$Age)
+
+
+```{r setup, 1}
+clean= read.csv("titanic_train.csv")
+clean$Age=replace(clean$Age, is.na(clean$Age), 0)
+head(clean$Age)
+
+
+{r setup, 2}
+library(Hmisc)
+var2= read.csv("titanic_train.csv")
+var2$Age=impute(var2$Age, mean)
+head(var2$Age)
+
+
+{r setup, 3}
+categories= read.csv("titanic_train.csv")
+categories$Sex=factor(categories$Sex)
+head(categories$Sex)
+
+
+{r setup, 4}
+varr1= read.csv("titanic_train.csv")
+boxplot(varr1$Fare, main="Boxplot of Fare", ylab="Fare", col="orange", horizontal=TRUE)
+
+
+
+```{r}
+try= read.csv("titanic_train.csv")
+boxplot(try$Age)
+outliers=boxplot.stats(try$Age)$out
+try$Age[is.na(try$Age)] <- median_age
