@@ -1,0 +1,15 @@
+library(rpart)
+library(datasets)
+
+data(iris)
+
+trainIndex <- sample(nrow(iris), 0.7*nrow(iris))
+trainData <- iris[trainIndex, ]
+testData <- iris[trainIndex, ]
+
+model <- rpart(Species~.,data=trainData, method="class")
+
+predictions <- predict(model, testData, type="class")
+
+accuracy <- sum(predictions == testData$Species / nrow(testData)
+cat("Accuracy:",accuracy)
